@@ -2,7 +2,7 @@
 // @name         Relatório ONT Huawei - Luiz Toledo
 // @namespace    http://tampermonkey.net/
 // @version      2.1.2
-// @description  Ao entrar na ONT, após 5s gera relatório pegando cada informação da ONT sem alterar a página
+// @description  Ao entrar na ONT, gera relatório após 5s pegando cada informação da ONT sem alterar a página
 // @author       Luiz Toledo
 // @match        https://*/index.asp
 // @grant        GM_setClipboard
