@@ -1,19 +1,18 @@
 // ==UserScript==
 // @name         Relatório ONT Huawei
 // @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  Ao apertar INSERT gera relatório pegando cada informação da ONT sem alterar a página
+// @version      2.0
+// @description  Ao entrar na ONT, após 5s gera relatório pegando cada informação da ONT sem alterar a página
 // @author       Luiz Toledo
 // @match        https://*/index.asp
 // @grant        GM_setClipboard
 // @run-at       document-idle
 // @updateURL    https://raw.githubusercontent.com/devluiztoledo/copiar-dados-ONT-autoisp/main/dados-ont-script.user.js
-// @downloadURL    https://raw.githubusercontent.com/devluiztoledo/copiar-dados-ONT-autoisp/main/dados-ont-script.user.js
+// @downloadURL  https://raw.githubusercontent.com/devluiztoledo/copiar-dados-ONT-autoisp/main/dados-ont-script.user.js
 // ==/UserScript==
 
 (function() {
   'use strict';
-
 
   const tasks = [
     {
@@ -60,7 +59,6 @@
     }
   ];
 
-
   function loadIframe(path) {
     return new Promise((resolve, reject) => {
       const iframe = document.createElement('iframe');
@@ -80,16 +78,17 @@
     });
   }
 
-
   function extractCount(text) {
     const m = text.match(/\((\d+)\)/);
     return m ? parseInt(m[1], 10) : 0;
   }
 
+  async function aguardarDispositivos(ms = 2000) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-  document.addEventListener('keydown', async e => {
-    if (e.code !== 'Insert') return;
-
+  async function gerarRelatorio() {
+    await aguardarDispositivos(2500);
 
     const mainIframe = document.querySelector('iframe[src*="mainpage.asp"]');
     let wifiCount = 0, wireCount = 0;
@@ -99,7 +98,6 @@
       wireCount = extractCount(mainDoc.getElementById('linenumspan')?.textContent.trim() || '');
     }
     const totalDev = wifiCount + wireCount;
-
 
     const acc = {
       modelo: 'N/A', firmware: 'N/A', uptime: 'N/A',
@@ -111,26 +109,29 @@
     };
 
     try {
-
       const docs = await Promise.all(tasks.map(task => loadIframe(task.path)));
       docs.forEach((doc, i) => {
         Object.assign(acc, tasks[i].extract(doc));
       });
 
-
       const report = `
-Configurações do roteador:
-Cliente possui um ${acc.modelo} ${acc.firmware}
+[CONFIGURAÇÕES DO ROTEADOR]
+Modelo: ${acc.modelo}
+Firmware: ${acc.firmware}
+
 Dispositivos Wi-Fi conectados: ${wifiCount}
 Dispositivos cabeados conectados: ${wireCount}
 Total de dispositivos: ${totalDev}
+
 DNS WAN: ${acc.dns1}, ${acc.dns2}
 DNS LAN: ${acc.dns1}, ${acc.dns2}
 Priorizar 5G: ${acc.prior5g}
 IPv6: ${acc.ipv6}
 UPnP: ${acc.upnp}
+
 Rede 2.4GHz com canal ${acc.canal24} e largura em ${acc.largura24}
 Rede 5GHz com canal ${acc.canal5} e largura em ${acc.largura5}
+
 Uptime: ${acc.uptime}
       `.trim();
 
@@ -140,5 +141,7 @@ Uptime: ${acc.uptime}
       console.error(err);
       alert('Erro durante a coleta: ' + err.message);
     }
-  });
+  }
+
+  window.addEventListener('load', gerarRelatorio);
 })();
