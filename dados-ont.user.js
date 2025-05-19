@@ -7,7 +7,7 @@
 // @match        https://*/index.asp
 // @grant        GM_setClipboard
 // @run-at       document-idle
-// @updateURL    https://raw.githubusercontent.com/devluiztoledo/copiar-dados-ONT-autoisp/main/onu-script.user.js
+// @updateURL    https://raw.githubusercontent.com/devluiztoledo/copiar-dados-ONT-autoisp/main/dados-ont-script.user.js
 // ==/UserScript==
 
 (function() {
