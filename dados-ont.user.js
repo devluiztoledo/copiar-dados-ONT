@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Relatório ONT Huawei
+// @name         Relatório ONT Huawei - Luiz Toledo
 // @namespace    http://tampermonkey.net/
 // @version      2.0
 // @description  Ao entrar na ONT, após 5s gera relatório pegando cada informação da ONT sem alterar a página
