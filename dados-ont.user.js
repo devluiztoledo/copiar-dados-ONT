@@ -7,7 +7,7 @@
 // @match        https://*/index.asp
 // @grant        GM_setClipboard
 // @run-at       document-idle
-// @icon         https://github.com/devluiztoledo/copiar-dados-ONT/tree/d3fe4a7928071d7033f2dbc14d2285cbbd737e52/assets/icon.png
+// @icon         https://raw.githubusercontent.com/devluiztoledo/copiar-dados-ONT/main/icon.png
 // @updateURL    https://github.com/devluiztoledo/copiar-dados-ONT/raw/refs/heads/main/dados-ont.user.js
 // @downloadURL  https://github.com/devluiztoledo/copiar-dados-ONT/raw/refs/heads/main/dados-ont.user.js
 
