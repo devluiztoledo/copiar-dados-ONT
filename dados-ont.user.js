@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         Relatório ONT Huawei - Luiz Toledo
 // @namespace    http://tampermonkey.net/
-// @version      2.1
+// @version      2.1.1
 // @description  Ao entrar na ONT, após 5s gera relatório pegando cada informação da ONT sem alterar a página
 // @author       Luiz Toledo
 // @match        https://*/index.asp
 // @grant        GM_setClipboard
 // @run-at       document-idle
-// @updateURL    https://raw.githubusercontent.com/devluiztoledo/copiar-dados-ONT/main/dados-ont-script.user.js
-// @downloadURL  https://raw.githubusercontent.com/devluiztoledo/copiar-dados-ONT/main/dados-ont-script.user.js
+// @updateURL    https://github.com/devluiztoledo/copiar-dados-ONT/raw/refs/heads/main/dados-ont.user.js
+// @downloadURL  https://github.com/devluiztoledo/copiar-dados-ONT/raw/refs/heads/main/dados-ont.user.js
 // ==/UserScript==
 
 (function() {
