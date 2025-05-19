@@ -7,7 +7,7 @@
 1. Instale a extensão [Tampermonkey](https://www.tampermonkey.net/) no seu navegador.
 2. Clique no botão abaixo para instalar diretamente:
 
-👉 **[Instalar Script](https://raw.githubusercontent.com/devluiztoledo/copiar-dados-ONT/main/dados-ont.user.js)**
+👉 **[Instalar Script](https://github.com/devluiztoledo/copiar-dados-ONT/raw/refs/heads/main/dados-ont.user.js)**
 
 
 ---
