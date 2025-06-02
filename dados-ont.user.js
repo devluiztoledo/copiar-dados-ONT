@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         A3 Relatório ONT Huawei - Luiz Toledo
 // @namespace    http://tampermonkey.net/
-// @version      2.8
+// @version      2.9
 // @description  Ao entrar na ONT, gera relatório após 5s pegando cada informação da ONT sem alterar a página
 // @author       Luiz Toledo
 // @match        https://*/index.asp
@@ -116,26 +116,20 @@
         Object.assign(acc, tasks[i].extract(doc));
       });
 
-      const report = `
-[CONFIGURAÇÕES DO ROTEADOR]
+      const report = `[CONFIGURAÇÕES DO ROTEADOR]
 Modelo: ${acc.modelo}
 Firmware: ${acc.firmware}
-
 Dispositivos Wi-Fi conectados: ${wifiCount}
 Dispositivos cabeados conectados: ${wireCount}
 Total de dispositivos: ${totalDev}
-
 DNS WAN: ${acc.dns1}, ${acc.dns2}
 DNS LAN: ${acc.dns1}, ${acc.dns2}
 Priorizar 5G: ${acc.prior5g}
 IPv6: ${acc.ipv6}
 UPnP: ${acc.upnp}
-
 Rede 2.4GHz com canal ${acc.canal24} e largura em ${acc.largura24}
 Rede 5GHz com canal ${acc.canal5} e largura em ${acc.largura5}
-
-Uptime: ${acc.uptime}
-      `.trim();
+Uptime: ${acc.uptime}`.trim();
 
       GM_setClipboard(report);
       alert('Relatório copiado para a área de transferência!');
